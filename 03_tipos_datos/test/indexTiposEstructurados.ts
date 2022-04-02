@@ -23,8 +23,16 @@ describe("TiposEstructurados", function () {
     await deployed.addHolder('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
     const listadoDireccionesUnaDireccion = await deployed.getAllAddresses();
     expect(listadoDireccionesUnaDireccion.length, "El listado de direcciones debe tener 1 elemento").to.equal(1);
-    expect(await deployed.getAddressByIndex(0), "La primera dirección debe ser '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'").to.equal('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
-
+    const unaDireccion= await deployed.getAddressByIndex(0);
+    expect(unaDireccion, "La primera dirección debe ser '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'")
+        .to.equal('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
+    // probamos el mapping
+    await deployed.addZeroBalanceToAddress(unaDireccion);
+    const listadoSaldos = await deployed.getAllBalanceAddresses();
+    expect(listadoSaldos[0], "El listado de saldos debe tener 0 elementos").to.equal(0);
+    expect(await deployed.balanceOf(unaDireccion), "El saldo debe ser 0").to.equal(0);
+    await deployed.setBalanceOf(unaDireccion, 40)
+    expect(await deployed.balanceOf(unaDireccion), "El saldo debe ser 40").to.equal(40);
     //await deployed.addZeroBalanceToAddress(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
   });
 });

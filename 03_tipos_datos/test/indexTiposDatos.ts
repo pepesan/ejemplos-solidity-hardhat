@@ -11,10 +11,13 @@ describe("TiposDatos", function () {
     expect(await  deployed.getEntero(), "Entero no es -1").to.equal(-1);
     expect(await  deployed.enteroSinSigno(), "Entero no es 17").to.equal(17);
     expect(await  deployed.enteroSinSigno256(), "Entero no es 17").to.equal(2000);
-    expect(await  deployed.cadena(), "Cadena no es 'Valor Inicial'").to.equal("Valor inicial");
-    // console.log(await  deployed.direccion());
+    expect(await  deployed.getEntero8(), "Entero8 no es 8").to.equal(8);
+    await  deployed.setCadena("Valor inicial")
+    expect(await deployed.getCadena(), "Cadena no es 'Valor Inicial'").to.equal("Valor inicial");
+    deployed.setCadena("Hello 😃")
     expect(await  deployed.direccion(), "Dirección no es 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266").to.equal('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
     await deployed.setEntero(12);
     expect(await  deployed.getEntero(), "Entero no es 12").to.equal(12);
+    expect(await  deployed.castingEntero(), "Entero no es 8").to.equal(8);
   });
 });
