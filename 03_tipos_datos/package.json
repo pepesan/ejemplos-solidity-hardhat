@@ -1,0 +1,14 @@
+{
+  "name": "03_tipos_datos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Vaquero <pepesan@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "hardhat": "^2.9.2"
+  }
+}
